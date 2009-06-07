@@ -1,0 +1,8 @@
+HOST localhost
+
+SUBARCHITECTURE chameleon 
+CPP WM SubarchitectureWorkingMemory
+CPP TM AlwaysPositiveTaskManager
+CPP MG chameleonSpec ChameleonSpecific 
+CPP MG dummyComp DummyComponent
+#CPP MG chameleon Chameleon 

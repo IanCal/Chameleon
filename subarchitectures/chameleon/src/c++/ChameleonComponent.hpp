@@ -27,7 +27,7 @@ class ChameleonComponent :
 
 			void simpleRecognise(string algorithm, string ID, vector<float> data, vector<float>& label);
 			void simpleLearn(string algorithm, string ID, vector<float> data, vector<float> label);
-			void simpleCreate(string algorithm, string ID, int inputLength, int outputLength);
+			void simpleCreate(string algorithm, string ID, int inputLength, int outputLength, map<string, int> config);
 			
 			void recognised(const cast::cdl::WorkingMemoryChange &_wmc);
 			void learned(const cast::cdl::WorkingMemoryChange &_wmc);

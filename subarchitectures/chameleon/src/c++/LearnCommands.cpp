@@ -86,6 +86,110 @@ chameleon::__read(::IceInternal::BasicStream* __is, ::chameleon::RecogniseThisPr
     }
 }
 
+void
+chameleon::__writeintMap(::IceInternal::BasicStream* __os, const ::chameleon::intMap& v)
+{
+    __os->writeSize(::Ice::Int(v.size()));
+    ::chameleon::intMap::const_iterator p;
+    for(p = v.begin(); p != v.end(); ++p)
+    {
+        __os->write(p->first);
+        __os->write(p->second);
+    }
+}
+
+void
+chameleon::__readintMap(::IceInternal::BasicStream* __is, ::chameleon::intMap& v)
+{
+    ::Ice::Int sz;
+    __is->readSize(sz);
+    while(sz--)
+    {
+        ::std::pair<const  ::std::string, ::Ice::Int> pair;
+        __is->read(const_cast< ::std::string&>(pair.first));
+        ::chameleon::intMap::iterator __i = v.insert(v.end(), pair);
+        __is->read(__i->second);
+    }
+}
+
+void
+chameleon::__writefloatMap(::IceInternal::BasicStream* __os, const ::chameleon::floatMap& v)
+{
+    __os->writeSize(::Ice::Int(v.size()));
+    ::chameleon::floatMap::const_iterator p;
+    for(p = v.begin(); p != v.end(); ++p)
+    {
+        __os->write(p->first);
+        __os->write(p->second);
+    }
+}
+
+void
+chameleon::__readfloatMap(::IceInternal::BasicStream* __is, ::chameleon::floatMap& v)
+{
+    ::Ice::Int sz;
+    __is->readSize(sz);
+    while(sz--)
+    {
+        ::std::pair<const  ::std::string, ::Ice::Float> pair;
+        __is->read(const_cast< ::std::string&>(pair.first));
+        ::chameleon::floatMap::iterator __i = v.insert(v.end(), pair);
+        __is->read(__i->second);
+    }
+}
+
+void
+chameleon::__writestringMap(::IceInternal::BasicStream* __os, const ::chameleon::stringMap& v)
+{
+    __os->writeSize(::Ice::Int(v.size()));
+    ::chameleon::stringMap::const_iterator p;
+    for(p = v.begin(); p != v.end(); ++p)
+    {
+        __os->write(p->first);
+        __os->write(p->second);
+    }
+}
+
+void
+chameleon::__readstringMap(::IceInternal::BasicStream* __is, ::chameleon::stringMap& v)
+{
+    ::Ice::Int sz;
+    __is->readSize(sz);
+    while(sz--)
+    {
+        ::std::pair<const  ::std::string, ::std::string> pair;
+        __is->read(const_cast< ::std::string&>(pair.first));
+        ::chameleon::stringMap::iterator __i = v.insert(v.end(), pair);
+        __is->read(__i->second);
+    }
+}
+
+void
+chameleon::__writeboolMap(::IceInternal::BasicStream* __os, const ::chameleon::boolMap& v)
+{
+    __os->writeSize(::Ice::Int(v.size()));
+    ::chameleon::boolMap::const_iterator p;
+    for(p = v.begin(); p != v.end(); ++p)
+    {
+        __os->write(p->first);
+        __os->write(p->second);
+    }
+}
+
+void
+chameleon::__readboolMap(::IceInternal::BasicStream* __is, ::chameleon::boolMap& v)
+{
+    ::Ice::Int sz;
+    __is->readSize(sz);
+    while(sz--)
+    {
+        ::std::pair<const  ::std::string, bool> pair;
+        __is->read(const_cast< ::std::string&>(pair.first));
+        ::chameleon::boolMap::iterator __i = v.insert(v.end(), pair);
+        __is->read(__i->second);
+    }
+}
+
 const ::std::string&
 IceProxy::chameleon::StartLearning::ice_staticId()
 {
@@ -158,11 +262,15 @@ IceProxy::chameleon::RecogniseThis::__newInstance() const
     return new RecogniseThis;
 }
 
-chameleon::StartLearning::StartLearning(const ::std::string& __ice_algorithm, const ::std::string& __ice_ID, ::Ice::Int __ice_inputLength, ::Ice::Int __ice_outputLength) :
+chameleon::StartLearning::StartLearning(const ::std::string& __ice_algorithm, const ::std::string& __ice_ID, ::Ice::Int __ice_inputLength, ::Ice::Int __ice_outputLength, const ::chameleon::intMap& __ice_configInt, const ::chameleon::floatMap& __ice_configFloat, const ::chameleon::stringMap& __ice_configString, const ::chameleon::boolMap& __ice_configBool) :
     algorithm(__ice_algorithm),
     ID(__ice_ID),
     inputLength(__ice_inputLength),
-    outputLength(__ice_outputLength)
+    outputLength(__ice_outputLength),
+    configInt(__ice_configInt),
+    configFloat(__ice_configFloat),
+    configString(__ice_configString),
+    configBool(__ice_configBool)
 {
 }
 
@@ -212,6 +320,10 @@ chameleon::StartLearning::__write(::IceInternal::BasicStream* __os) const
     __os->write(ID);
     __os->write(inputLength);
     __os->write(outputLength);
+    ::chameleon::__writeintMap(__os, configInt);
+    ::chameleon::__writefloatMap(__os, configFloat);
+    ::chameleon::__writestringMap(__os, configString);
+    ::chameleon::__writeboolMap(__os, configBool);
     __os->endWriteSlice();
 #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
     Object::__write(__os);
@@ -233,6 +345,10 @@ chameleon::StartLearning::__read(::IceInternal::BasicStream* __is, bool __rid)
     __is->read(ID);
     __is->read(inputLength);
     __is->read(outputLength);
+    ::chameleon::__readintMap(__is, configInt);
+    ::chameleon::__readfloatMap(__is, configFloat);
+    ::chameleon::__readstringMap(__is, configString);
+    ::chameleon::__readboolMap(__is, configBool);
     __is->endReadSlice();
 #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
     Object::__read(__is, true);

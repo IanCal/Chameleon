@@ -16,6 +16,8 @@ class KNearestNeighbour :
 		
 		float distanceSq(vector<float> a, vector<float> b);
 
+		
+		virtual void config(int inputSize, int outputSize, map<string, int>& configInt, map<string, float>& configFloat, map<string, string>& configString, map<string, bool>& configBool);
 		virtual void learn(vector<float> input, vector<float> label);
 		virtual void recognise(vector<float> input, vector<float>& label);
 		virtual KNearestNeighbour* createNew();

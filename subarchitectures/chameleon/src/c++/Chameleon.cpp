@@ -33,6 +33,7 @@ void Chameleon::newStartLearningCommand(const cast::cdl::WorkingMemoryChange &_w
 	map<string, BasicAlgorithm* >::iterator algo = algorithms.find(learnCmd->algorithm);
 	if (algo != algorithms.end()){
 		found = (*algo).second->createNew();
+		found->config(learnCmd->inputLength, learnCmd->outputLength, learnCmd->configInt, learnCmd->configFloat, learnCmd->configString, learnCmd->configBool); 
 		recognisers.insert(make_pair(make_pair(learnCmd->algorithm, learnCmd->ID), found));
 		recognisersAlgorithmIndex.insert(make_pair(learnCmd->algorithm,  found));
 		recognisersIDIndex.insert(make_pair(learnCmd->ID,  found));

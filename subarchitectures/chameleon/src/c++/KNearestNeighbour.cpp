@@ -8,6 +8,9 @@ KNearestNeighbour::KNearestNeighbour(){
 	
 };
 
+void KNearestNeighbour::config(int inputSize, int outputSize, map<string, int>& configInt, map<string, float>& configFloat, map<string, string>& configString, map<string, bool>& configBool){
+
+};
 
 float KNearestNeighbour::distanceSq(vector<float> a, vector<float> b){
 	float dist = 0.0;

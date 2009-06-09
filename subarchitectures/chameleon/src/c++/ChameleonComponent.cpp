@@ -1,4 +1,5 @@
 #include "ChameleonComponent.hpp"
+#include <typeinfo>
 
 
 
@@ -6,7 +7,7 @@ ChameleonComponent::ChameleonComponent(){
 	filtersSet = false;
 };
 
-void ChameleonComponent::simpleCreate(string algorithm, string ID, int inputLength, int outputLength){
+void ChameleonComponent::simpleCreate(string algorithm, string ID, int inputLength, int outputLength, map<string, int> configInt){
 
 	if (!filtersSet)
 		setFilters();
@@ -16,6 +17,7 @@ void ChameleonComponent::simpleCreate(string algorithm, string ID, int inputLeng
 	StartLearningThis->ID = ID;
 	StartLearningThis->inputLength = inputLength;
 	StartLearningThis->outputLength = outputLength;
+	StartLearningThis->configInt = configInt;
 	addToWorkingMemory(newDataID(), StartLearningThis);
 
 };

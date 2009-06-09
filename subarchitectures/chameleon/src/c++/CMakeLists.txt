@@ -9,7 +9,7 @@ install(TARGETS LearnCommands LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 add_cast_component(Chameleon Chameleon.cpp BasicAlgorithm.cpp)
 link_cast_component(${CAST_COMPONENT_NAME} LearnCommands)
 
-add_cast_component(ChameleonSpecific Chameleon.cpp ChameleonSpecific.cpp BasicAlgorithm.cpp KNearestNeighbour.cpp)
+add_cast_component(ChameleonSpecific Chameleon.cpp ChameleonSpecific.cpp BasicAlgorithm.cpp KNearestNeighbour.cpp PrintEverythingAlgorithm.cpp)
 link_cast_component(${CAST_COMPONENT_NAME} LearnCommands)
 
 add_cast_component(DummyComponent ChameleonComponent.cpp DummyComponent.cpp)

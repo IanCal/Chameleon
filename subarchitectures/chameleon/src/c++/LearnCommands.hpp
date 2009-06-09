@@ -10,8 +10,8 @@
 // Ice version 3.3.0
 // Generated from file `LearnCommands.ice'
 
-#ifndef ___home_ian_git_repositories_cosy_subarchitectures_chameleon_src_c___LearnCommands_hpp__
-#define ___home_ian_git_repositories_cosy_subarchitectures_chameleon_src_c___LearnCommands_hpp__
+#ifndef ___home_ian_git_repositories_Chameleon_subarchitectures_chameleon_src_c___LearnCommands_hpp__
+#define ___home_ian_git_repositories_Chameleon_subarchitectures_chameleon_src_c___LearnCommands_hpp__
 
 #include <Ice/LocalObjectF.h>
 #include <Ice/ProxyF.h>
@@ -113,6 +113,22 @@ namespace chameleon
 {
 
 typedef ::std::vector< ::Ice::Float> FloatSeq;
+
+typedef ::std::map< ::std::string, ::Ice::Int> intMap;
+void __writeintMap(::IceInternal::BasicStream*, const intMap&);
+void __readintMap(::IceInternal::BasicStream*, intMap&);
+
+typedef ::std::map< ::std::string, ::Ice::Float> floatMap;
+void __writefloatMap(::IceInternal::BasicStream*, const floatMap&);
+void __readfloatMap(::IceInternal::BasicStream*, floatMap&);
+
+typedef ::std::map< ::std::string, ::std::string> stringMap;
+void __writestringMap(::IceInternal::BasicStream*, const stringMap&);
+void __readstringMap(::IceInternal::BasicStream*, stringMap&);
+
+typedef ::std::map< ::std::string, bool> boolMap;
+void __writeboolMap(::IceInternal::BasicStream*, const boolMap&);
+void __readboolMap(::IceInternal::BasicStream*, boolMap&);
 
 }
 
@@ -827,7 +843,7 @@ public:
     typedef StartLearningPtr PointerType;
     
     StartLearning() {}
-    StartLearning(const ::std::string&, const ::std::string&, ::Ice::Int, ::Ice::Int);
+    StartLearning(const ::std::string&, const ::std::string&, ::Ice::Int, ::Ice::Int, const ::chameleon::intMap&, const ::chameleon::floatMap&, const ::chameleon::stringMap&, const ::chameleon::boolMap&);
     virtual ::Ice::ObjectPtr ice_clone() const;
 
     virtual bool ice_isA(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) const;
@@ -858,6 +874,14 @@ public:
     ::Ice::Int inputLength;
 
     ::Ice::Int outputLength;
+
+    ::chameleon::intMap configInt;
+
+    ::chameleon::floatMap configFloat;
+
+    ::chameleon::stringMap configString;
+
+    ::chameleon::boolMap configBool;
 };
 
 class StartLearning__staticInit
